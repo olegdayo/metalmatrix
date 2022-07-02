@@ -1,5 +1,5 @@
 pub struct Matrix<T> {
-    rows_number: i32,
-    columns_number: i32,
+    rows_number: usize,
+    columns_number: usize,
     matr: Vec<Vec<T>>,
 }
