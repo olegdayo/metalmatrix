@@ -8,4 +8,4 @@ edition = "2021"
 [dependencies]
 [lib]
 crate-type=["types"]
-path="src/tests/test.rs"
+path="src/*.rs"
