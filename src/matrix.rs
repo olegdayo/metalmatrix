@@ -1,10 +1,5 @@
 pub mod matrix {
-    #[derive(PartialEq, Debug)]
-    pub struct Matrix {
-        rows: usize,
-        cols: usize,
-        matr: Vec<Vec<f64>>,
-    }
+    use std::ops::Index;
 
     impl Matrix {
         pub fn rows(&self) -> usize {
@@ -21,7 +16,7 @@ pub mod matrix {
             for i in 0..self.rows {
                 v.push(Vec::new());
                 for j in 0..self.cols {
-                    v[i].push(self.matr[i][j]);
+                    v[i].push(self[i][j]);
                 }
             }
 
@@ -29,11 +24,7 @@ pub mod matrix {
         }
 
         pub fn new() -> Self {
-            Matrix{
-                rows: 0,
-                cols: 0,
-                matr: Vec::new(),
-            }
+            Matrix::default()
         }
 
         pub fn from(matrix: Vec<Vec<f64>>) -> Result<Self, &'static str> {
@@ -51,8 +42,12 @@ pub mod matrix {
             Ok(m)
         }
     }
-}
 
-pub mod general {
-    use crate::matrix::matrix::Matrix;
+    impl Index<usize> for Matrix {
+        type Output = [f64];
+
+        fn index(&self, index: usize) -> &Self::Output {
+            &self.matr[index]
+        }
+    }
 }

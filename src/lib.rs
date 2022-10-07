@@ -1,15 +1,16 @@
 mod matrix;
-mod diagonal_matrix;
+mod types;
+mod general;
+mod indexer;
 
 #[cfg(test)]
 mod tests {
-    use crate::matrix::matrix;
-    use crate::diagonal_matrix::diagonal_matrix;
+    use crate::types;
 
     #[test]
-    fn it_works() {
-        let m1 = matrix::Matrix::new();
-        let m2 = matrix::Matrix::new();
+    fn check_new() {
+        let m1 = types::Matrix::new();
+        let m2 = types::Matrix::new();
         assert_eq!(m1, m2);
     }
 }
