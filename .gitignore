@@ -1,7 +1,10 @@
+# System
 .DS_Store
 
-.idea/*
-.vscode/*
-
-target/*
+# IDE file and other project stuff
+.idea/
+.vscode/
 /Cargo.lock
+
+# Binaries
+target/
