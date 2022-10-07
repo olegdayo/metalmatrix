@@ -1,5 +1,5 @@
 use std::ops::Index;
-use crate::types::{Matrix, BaseMatrix, DiagonalMatrix, SquareMatrix, LowerTriangularMatrix};
+use crate::types::{BaseMatrix, DiagonalMatrix, SquareMatrix, LowerTriangularMatrix};
 
 impl Index<usize> for BaseMatrix {
     type Output = [f64];
