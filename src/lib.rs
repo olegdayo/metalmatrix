@@ -1,6 +1,3 @@
-extern crate core;
-extern crate core;
-
 mod types;
 mod general;
 mod indexer;
