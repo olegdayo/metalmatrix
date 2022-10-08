@@ -26,8 +26,8 @@ impl Matrix for BaseMatrix {
         v
     }
 
-    fn get_row(&self) -> &[f64] {
-        todo!()
+    fn get_row(&self, index: usize) -> &[f64] {
+        self.matr[index].as_slice()
     }
 
     fn new() -> Self {
@@ -50,24 +50,54 @@ impl Matrix for BaseMatrix {
     }
 }
 
-impl Matrix for DiagonalMatrix {
+impl Matrix for SquareMatrix {
     fn rows(&self) -> usize {
-        todo!()
+        self.side
     }
 
     fn cols(&self) -> usize {
-        todo!()
+        self.side
     }
 
     fn shape(&self) -> (usize, usize) {
-        todo!()
+        (self.side, self.side)
     }
 
     fn to_vec(&self) -> Vec<Vec<f64>> {
         todo!()
     }
 
-    fn get_row(&self) -> &[f64] {
+    fn get_row(&self, index: usize) -> &[f64] {
+        self.matr[index].as_slice()
+    }
+
+    fn new() -> Self {
+        SquareMatrix::default()
+    }
+
+    fn from(matrix: Vec<Vec<f64>>) -> Result<Self, String> {
+        todo!()
+    }
+}
+
+impl Matrix for DiagonalMatrix {
+    fn rows(&self) -> usize {
+        self.side
+    }
+
+    fn cols(&self) -> usize {
+        self.side
+    }
+
+    fn shape(&self) -> (usize, usize) {
+        (self.side, self.side)
+    }
+
+    fn to_vec(&self) -> Vec<Vec<f64>> {
+        todo!()
+    }
+
+    fn get_row(&self, index: usize) -> &[f64] {
         todo!()
     }
 
@@ -80,55 +110,25 @@ impl Matrix for DiagonalMatrix {
     }
 }
 
-impl Matrix for SquareMatrix {
-    fn rows(&self) -> usize {
-        todo!()
-    }
-
-    fn cols(&self) -> usize {
-        todo!()
-    }
-
-    fn shape(&self) -> (usize, usize) {
-        todo!()
-    }
-
-    fn to_vec(&self) -> Vec<Vec<f64>> {
-        todo!()
-    }
-
-    fn get_row(&self) -> &[f64] {
-        todo!()
-    }
-
-    fn new() -> Self {
-        SquareMatrix::default()
-    }
-
-    fn from(matrix: Vec<Vec<f64>>) -> Result<Self, String> {
-        todo!()
-    }
-}
-
 impl Matrix for LowerTriangularMatrix {
     fn rows(&self) -> usize {
-        todo!()
+        self.rows
     }
 
     fn cols(&self) -> usize {
-        todo!()
+        self.cols
     }
 
     fn shape(&self) -> (usize, usize) {
-        todo!()
+        (self.rows, self.cols)
     }
 
     fn to_vec(&self) -> Vec<Vec<f64>> {
         todo!()
     }
 
-    fn get_row(&self) -> &[f64] {
-        todo!()
+    fn get_row(&self, index: usize) -> &[f64] {
+        self.matr[index].as_slice()
     }
 
     fn new() -> Self {

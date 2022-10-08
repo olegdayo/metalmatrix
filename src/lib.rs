@@ -1,9 +1,13 @@
+extern crate core;
+extern crate core;
+
 mod types;
 mod general;
 mod indexer;
+mod tests;
 
 #[cfg(test)]
-mod tests {
+mod tests_caller {
     use crate::types::{Matrix, BaseMatrix};
 
     #[test]
