@@ -1,6 +1,6 @@
 use std::ops::Index;
 
-pub(crate) trait Matrix: Index<usize, Output=[f64]> {
+pub trait Matrix: Index<usize, Output=[f64]> {
     fn rows(&self) -> usize;
     fn cols(&self) -> usize;
     fn shape(&self) -> (usize, usize);
