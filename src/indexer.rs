@@ -4,7 +4,7 @@ use crate::types::{BaseMatrix, SquareMatrix, DiagonalMatrix, LowerTriangularMatr
 impl Index<usize> for BaseMatrix {
     type Output = [f64];
 
-    fn index(&self, index: usize) -> &Self::Output {
+    fn index(&self, index: usize) -> &zSelf::Output {
         self.get_row(index)
     }
 }
