@@ -44,10 +44,15 @@ impl Matrix for BaseMatrix {
         bm.rows = matrix.len();
         bm.cols = matrix[0].len();
         for i in 0..matrix.len() {
+            if matrix[i].len() != bm.cols {
+                return Err("Matrix rows are not the same length".to_string());
+            }
+
             bm.matr.push(
                 FullVector{
                     index: i,
                     row: matrix[i].clone(),
+                    len: bm.cols,
                 }
             );
         }
@@ -106,6 +111,7 @@ impl Matrix for SquareMatrix {
                 FullVector{
                     index: i,
                     row: matrix[i].clone(),
+                    len: sm.side,
                 }
             );
         }
@@ -164,6 +170,7 @@ impl Matrix for DiagonalMatrix {
                 CompressedVector{
                     index: i,
                     val: matrix[i][i],
+                    len: dm.side,
                 }
             );
         }

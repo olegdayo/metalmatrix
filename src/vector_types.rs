@@ -2,22 +2,31 @@ use std::fmt::{Debug, Formatter};
 use std::ops::Index;
 
 pub trait Vector: Index<usize, Output=f64> {
+    fn len(&self) -> usize;
 }
 
 pub(crate) struct FullVector {
     pub(crate) row: Vec<f64>,
     pub(crate) index: usize,
+    pub(crate) len: usize,
 }
 
 pub(crate) struct CompressedVector {
     pub(crate) val: f64,
     pub(crate) index: usize,
+    pub(crate) len: usize,
 }
 
 impl Vector for FullVector {
+    fn len(&self) -> usize {
+        self.len
+    }
 }
 
 impl Vector for CompressedVector {
+    fn len(&self) -> usize {
+        self.len
+    }
 }
 
 impl Debug for FullVector {
