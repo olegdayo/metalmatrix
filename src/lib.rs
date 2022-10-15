@@ -1,4 +1,7 @@
-mod types;
+extern crate core;
+
+mod matrix_types;
 mod general;
-mod indexer;
 mod tests;
+mod vector_types;
+mod indexers;

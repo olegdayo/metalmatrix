@@ -1,4 +1,5 @@
-use crate::types::{Matrix, BaseMatrix, DiagonalMatrix, SquareMatrix, LowerTriangularMatrix};
+use crate::matrix_types::{Matrix, BaseMatrix, DiagonalMatrix, SquareMatrix};
+use crate::vector_types::{CompressedVector, FullVector};
 
 impl Matrix for BaseMatrix {
     fn rows(&self) -> usize {
@@ -26,10 +27,6 @@ impl Matrix for BaseMatrix {
         v
     }
 
-    fn get_row(&self, index: usize) -> &[f64] {
-        self.matr[index].as_slice()
-    }
-
     fn new() -> Self {
         BaseMatrix::default()
     }
@@ -46,7 +43,14 @@ impl Matrix for BaseMatrix {
         let mut bm = BaseMatrix::new();
         bm.rows = matrix.len();
         bm.cols = matrix[0].len();
-        bm.matr = matrix;
+        for i in 0..matrix.len() {
+            bm.matr.push(
+                FullVector{
+                    index: i,
+                    row: matrix[i].clone(),
+                }
+            );
+        }
 
         Ok(bm)
     }
@@ -78,10 +82,6 @@ impl Matrix for SquareMatrix {
         v
     }
 
-    fn get_row(&self, index: usize) -> &[f64] {
-        self.matr[index].as_slice()
-    }
-
     fn new() -> Self {
         SquareMatrix::default()
     }
@@ -101,7 +101,14 @@ impl Matrix for SquareMatrix {
 
         let mut sm = SquareMatrix::new();
         sm.side = matrix.len();
-        sm.matr = matrix;
+        for i in 0..matrix.len() {
+            sm.matr.push(
+                FullVector{
+                    index: i,
+                    row: matrix[i].clone(),
+                }
+            );
+        }
 
         Ok(sm)
     }
@@ -132,13 +139,6 @@ impl Matrix for DiagonalMatrix {
         v
     }
 
-    fn get_row(&self, index: usize) -> &[f64] {
-        let mut v = Vec::with_capacity(self.side);
-        v.resize(self.side, 0f64);
-        v[index] = self.diag[index];
-        v.as_slice()
-    }
-
     fn new() -> Self {
         DiagonalMatrix::default()
     }
@@ -160,39 +160,14 @@ impl Matrix for DiagonalMatrix {
         dm.side = matrix.len();
         dm.diag = Vec::with_capacity(dm.side);
         for i in 0..dm.side {
-            dm.diag.push(matrix[i][i]);
+            dm.diag.push(
+                CompressedVector{
+                    index: i,
+                    val: matrix[i][i],
+                }
+            );
         }
 
         Ok(dm)
-    }
-}
-
-impl Matrix for LowerTriangularMatrix {
-    fn rows(&self) -> usize {
-        self.rows
-    }
-
-    fn cols(&self) -> usize {
-        self.cols
-    }
-
-    fn shape(&self) -> (usize, usize) {
-        (self.rows, self.cols)
-    }
-
-    fn to_vec(&self) -> Vec<Vec<f64>> {
-        todo!()
-    }
-
-    fn get_row(&self, index: usize) -> &[f64] {
-        self.matr[index].as_slice()
-    }
-
-    fn new() -> Self {
-        LowerTriangularMatrix::default()
-    }
-
-    fn from(matrix: Vec<Vec<f64>>) -> Result<Self, String> {
-        todo!()
     }
 }
