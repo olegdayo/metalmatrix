@@ -4,7 +4,7 @@ mod matrices {
     use crate::vector_types::{Vector};
 
     impl Index<usize> for BaseMatrix {
-        type Output = dyn Vector;
+        type Output = dyn Vector<Output=f64>;
 
         fn index(&self, index: usize) -> &Self::Output {
             &self.matr[index]
@@ -12,7 +12,7 @@ mod matrices {
     }
 
     impl Index<usize> for SquareMatrix {
-        type Output = dyn Vector;
+        type Output = dyn Vector<Output=f64>;
 
         fn index(&self, index: usize) -> &Self::Output {
             &self.matr[index]
@@ -20,7 +20,7 @@ mod matrices {
     }
 
     impl Index<usize> for DiagonalMatrix {
-        type Output = dyn Vector;
+        type Output = dyn Vector<Output=f64>;
 
         fn index(&self, index: usize) -> &Self::Output {
             &self.diag[index]
